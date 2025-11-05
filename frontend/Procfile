@@ -1,1 +1,2 @@
-gunicorn --bind 0.0.0.0:$PORT ../backend/wsgi:application
+# File: frontend/Procfile (PASTIKAN INI HANYA UNTUK STARTUP)
+web: cd .. && gunicorn --bind 0.0.0.0:$PORT backend/wsgi:application
