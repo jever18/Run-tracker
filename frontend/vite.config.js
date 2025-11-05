@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   build: {
-    outDir: path.resolve(__dirname, '../backend/dist'), 
+    outDir: '../backend/dist', 
     
     emptyOutDir: true, 
     
