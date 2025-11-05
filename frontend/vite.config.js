@@ -1,18 +1,30 @@
-// frontend/vite.config.js (KEMBALI KE DEFAULT LOKAL)
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue' 
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
 
-export default defineConfig({
-  // 2. AKTIFKAN plugin Vue
-  plugins: [vue()], 
+export default defineConfig(({ mode }) => ({
+  plugins: [vue()],
 
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:5000', // Alamat backend Flask
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api'), 
       },
     },
   },
-})
+
+  build: {
+    outDir: path.resolve(__dirname, '../backend/dist'), 
+    
+    emptyOutDir: true, 
+    
+  },
+  
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  }
+}));
